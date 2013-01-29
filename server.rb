@@ -16,10 +16,16 @@ end
 get "/match/:q" do
   query = <<SPARQL
 PREFIX corp: <http://schema.org/Corporation>
-SELECT ?p ?prop WHERE {  
+SELECT DISTINCT ?p ?prop ?t ?sub WHERE {{  
   ?c corp:name ?o .
   FILTER regex(?o, "#{params[:q]}", "i") .
   ?c ?p ?prop }
+UNION {
+  ?c corp:name ?o .
+  FILTER regex(?o, "#{params[:q]}", "i") .
+  ?c ?p ?prop .
+  ?prop ?t ?sub 
+}}
 SPARQL
   response = HTTParty.get(DNB_SPARQL_ENDPOINT + "?query=#{URI.escape(query)}&output=json")
   response.body

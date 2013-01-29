@@ -4,8 +4,13 @@
    Author's custom styles
    ========================================================================== */
 
+#result, #spinner {
+  display: none;
+}
 
-
+.report-details {
+  font-variant: small-caps;
+}
 
 
 
