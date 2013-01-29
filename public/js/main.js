@@ -43,6 +43,6 @@ function getDbPedia(entityId) {
 function renderDbPedia(data, uri) {
   if (data.results && data.results.bindings.length > 0) {
     var element = $("#result");
-    element.append("<p> " + data.results.bindings[0].abstract.value + " <span class=\"tiny\">Source: <a href=\"" + uri + "\">DbPedia</a></span></p>");
+    element.append("<p> " + data.results.bindings[0].abstract.value + " <span class=\"label label-info\">Source: <a href=\"" + uri + "\">DbPedia</a></span></p>");
   }
 }
