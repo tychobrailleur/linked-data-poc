@@ -13,6 +13,7 @@
        corporation:tickerSymbol "GOOG" ;
        corporation:fundingDate "1998" ;
        corporation:founder _:p1 ;
+       owl:sameAs <http://dbpedia.org/resource/Google> ;
        owl:sameAs <http://api.opencorporates.com/companies/us_ca/C2474131> .
 
 _:a1   address:streetAddress "1600 Amphitheatre Pkwy" ;
