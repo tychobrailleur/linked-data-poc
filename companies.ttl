@@ -24,4 +24,4 @@ _:a1   address:streetAddress "1600 Amphitheatre Pkwy" ;
 
 _:p1   person:givenName "Larry" ;
        person:familyName "Page" ;
-       owl:sameAs <http://dbpedia.org/page/Larry_Page> .
+       owl:sameAs <http://dbpedia.org/resource/Larry_Page> .
