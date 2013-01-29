@@ -1,0 +1,26 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix corporation: <http://schema.org/Corporation> .
+@prefix address: <http://schema.org/PostalAddress> .
+@prefix person: <http://schema.org/Person> .
+
+# Google
+<http://www.dnb.com/companies/060902413> corporation:duns "060902413" ;
+       corporation:address _:a1 ;
+       corporation:name "Google Inc." ;
+       corporation:tickerSymbol "GOOG" ;
+       corporation:fundingDate "1998" ;
+       corporation:founder _:p1 ;
+       owl:sameAs <http://api.opencorporates.com/companies/us_ca/C2474131> .
+
+_:a1   address:streetAddress "1600 Amphitheatre Pkwy" ;
+       address:postalCode "94043" ;
+       address:addressRegion "CA" ;
+       address:addressLocality "Mountain View" ;
+       address:addressCountry "US" .
+
+_:p1   person:givenName "Larry" ;
+       person:familyName "Page" ;
+       owl:sameAs <http://dbpedia.org/page/Larry_Page> .
