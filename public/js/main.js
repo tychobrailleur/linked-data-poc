@@ -11,8 +11,8 @@ $(document).ready(function() {
       "/match/" + q,
       function(data) {
         renderReport(data);
-       }
-     );
+      }
+    );
     return false;
   });
 });
@@ -35,7 +35,7 @@ function renderReport(data) {
         company = value.prop.value;
       }
     });
-
+    
     $("#spinner").hide();
     $("#result").show();
     $("#report-name").html(company);
@@ -45,11 +45,11 @@ function renderReport(data) {
 function getDbPedia(entityId) {
   console.log("DbPedia! " + entityId);
   $.getJSON(
-     "/dbpedia/" + encodeURIComponent(entityId),
-      function(data) {
-        renderDbPedia(data, entityId);
-       }
-     );
+    "/dbpedia/" + encodeURIComponent(entityId),
+    function(data) {
+      renderDbPedia(data, entityId);
+    }
+  );
 }
 
 function renderDbPedia(data, uri) {
