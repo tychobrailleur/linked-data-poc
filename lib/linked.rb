@@ -5,7 +5,6 @@ require 'json'
 
 class DbPedia
   DBPEDIA_SPARQL_ENDPOINT = "http://dbpedia.org/sparql/"
-  RestClient.proxy = "http://bcproxy.us.dnb.com:8080"
 
   def abstract(subject)
     puts " ### #{subject}"

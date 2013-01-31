@@ -58,7 +58,7 @@
                         </ul>
                         <form class="navbar-form pull-right">
                           <input class="input-xlarge" id="q" type="text" placeholder="Company Name">
-                          <button type="submit" id="searchBtn" class="btn btn-primary">Go</button>
+                          <button type="submit" id="searchBtn" class="btn btn-primary" data-bind="click: getReport">Go</button>
                         </form>
                         <!-- <form class="navbar-form pull-right"> -->
                         <!--     <input class="span2" type="text" placeholder="Email"> -->
@@ -71,14 +71,14 @@
         </div>
 
         <div class="container">
-            <div id="spinner" class="container">
+            <div id="spinner" class="container" data-bind="visible: !show">
               <img src="img/ajax-loader.gif" alt="Loading...">
             </div>
-            <div class="container" id="result">
-              <h1 id="report-name"></h1>
-              <p class="report-details"><span id="report-duns"></span> &middot; <addr id="report-address"></addr></p>
+            <div class="container" data-bind="visible: show">
+              <h1 data-bind="text: name"></h1>
+              <p class="report-details"><span data-bind="text: duns"></span> &middot; <addr data-bind="text: address"></addr></p>
               <div class="row">
-                <div class="span8" id="report-abstract">
+                <div class="span8" data-bind="text: description">
                 </div>
                 <div class="span4" id="report-info">
                   <img id="report-logo">
@@ -98,6 +98,8 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.9.0.min.js"><\/script>')</script>
 
         <script src="js/vendor/bootstrap.min.js"></script>
+        <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
         <script src="js/main.js"></script>
+
     </body>
 </html>
