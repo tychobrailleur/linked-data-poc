@@ -9,7 +9,15 @@ var CompanyReportModel = function() {
   this.input = ko.observable();
   this.name = ko.observable();
   this.duns = ko.observable();
-  this.address = ko.observable();
+  this.streetAddress = ko.observable();
+  this.addressLocality = ko.observable();
+  this.addressRegion = ko.observable();
+  this.postalCode = ko.observable();
+  this.address = ko.computed(function() {
+   return self.streetAddress() + ", " + self.addressLocality() + ", " 
+      + self.addressRegion() + " " + self.postalCode();
+  });
+
   this.dbpedia = ko.observable();
   this.description = ko.observable();
 
@@ -30,7 +38,10 @@ var CompanyReportModel = function() {
     if (data) {
       this.name(data["http://schema.org/Corporationname"]);
       this.duns(data["http://schema.org/Corporationduns"]);
-      this.address(data["http://schema.org/PostalAddressstreetAddress"]);
+      this.streetAddress(data["http://schema.org/PostalAddressstreetAddress"]);
+      this.addressLocality(data["http://schema.org/PostalAddressaddressLocality"]);
+      this.addressRegion(data["http://schema.org/PostalAddressaddressRegion"]);
+      this.postalCode(data["http://schema.org/PostalAddresspostalCode"]);
       
       // hardcoded, as the sparql query returns dbpedia for linked nodes too.
       this.dbpedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
