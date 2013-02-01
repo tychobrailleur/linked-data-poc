@@ -11,7 +11,7 @@
        corporation:address _:a1 ;
        corporation:name "Google Inc." ;
        corporation:tickerSymbol "GOOG" ;
-       corporation:fundingDate "1998" ;
+       corporation:foundingDate "1998" ;
        corporation:founder _:p1 ;
        owl:sameAs <http://dbpedia.org/resource/Google> ;
        owl:sameAs <http://api.opencorporates.com/companies/us_ca/C2474131> .
@@ -25,3 +25,23 @@ _:a1   address:streetAddress "1600 Amphitheatre Pkwy" ;
 _:p1   person:givenName "Larry" ;
        person:familyName "Page" ;
        owl:sameAs <http://dbpedia.org/resource/Larry_Page> .
+
+# IBM
+<http://www.weblogism.com/companies/001368083> corporation:duns "001368083" ;
+       corporation:address _:a2 ;
+       corporation:name "International Business Machines Corporation" ;
+       corporation:tickerSymbol "IBM" ;
+       corporation:foundingDate "1911" ;
+       corporation:founder _:p2 ;
+       owl:sameAs <http://dbpedia.org/resource/IBM> ;
+       owl:sameAs <http://api.opencorporates.com/companies/us_vt/F013910> .
+
+_:a2   address:streetAddress "New Orchard Road" ;
+       address:postalCode "10504" ;
+       address:addressRegion "NY" ;
+       address:addressLocality "Armonk" ;
+       address:addressCountry "US" .
+
+_:p2   person:givenName "Charles" ;
+       person:familyName "Flint" ;
+       owl:sameAs <http://dbpedia.org/resource/Charles_Ranlett_Flint> .
