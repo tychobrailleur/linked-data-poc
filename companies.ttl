@@ -7,7 +7,7 @@
 @prefix person: <http://schema.org/Person> .
 
 # Google
-<http://www.dnb.com/companies/060902413> corporation:duns "060902413" ;
+<http://www.weblogism.com/companies/060902413> corporation:duns "060902413" ;
        corporation:address _:a1 ;
        corporation:name "Google Inc." ;
        corporation:tickerSymbol "GOOG" ;

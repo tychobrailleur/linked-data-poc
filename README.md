@@ -22,7 +22,7 @@
 - Update value:
 
     PREFIX owl: <http://www.w3.org/2002/07/owl#>
-    INSERT { <http://www.dnb.com/companies/060902413> owl:sameAs  "http://live.dbpedia.org/page/Google" } WHERE {}
+    INSERT { <http://www.weblogism.com/companies/060902413> owl:sameAs  "http://live.dbpedia.org/page/Google" } WHERE {}
 
 
 ### Outstanding Questions
