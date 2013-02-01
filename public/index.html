@@ -19,6 +19,7 @@
         </style>
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
+        <link href='http://fonts.googleapis.com/css?family=Libre+Baskerville' rel='stylesheet' type='text/css'>
 
         <script src="js/vendor/modernizr-2.6.2-respond-1.1.0.min.js"></script>
     </head>
@@ -69,14 +70,19 @@
             <div id="spinner" class="container" data-bind="visible: !show">
               <img src="img/ajax-loader.gif" alt="Loading...">
             </div>
-            <div class="container" data-bind="visible: show">
+            <div id="report" class="container" data-bind="visible: show">
               <h1 data-bind="text: name"></h1>
               <p class="report-details"><span data-bind="text: duns"></span> &middot; <addr data-bind="text: address"></addr></p>
               <div class="row">
-                <div class="span8" data-bind="text: description">
+                <div id="report-abstract" class="span8">
+                  <p data-bind="text: description"></p>
                 </div>
                 <div class="span4" id="report-info">
-                  <img id="report-logo">
+                  <img width="200" id="report-logo" data-bind="attr: { src: logo, alt: name }">
+                  <dl class="dl-horizontal dl-multicolumn">
+                    <dt>Founded</dt>
+                    <dd data-bind="text: foundingDate"></dd>
+                  </dl>
                 </div>
               </div>
             </div>
@@ -94,6 +100,7 @@
 
         <script src="js/vendor/bootstrap.min.js"></script>
         <script src="http://ajax.aspnetcdn.com/ajax/knockout/knockout-2.2.1.js"></script>
+
         <script src="js/main.js"></script>
 
     </body>

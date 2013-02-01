@@ -9,10 +9,12 @@ var CompanyReportModel = function() {
   this.input = ko.observable();
   this.name = ko.observable();
   this.duns = ko.observable();
+  this.logo = ko.observable();
   this.streetAddress = ko.observable();
   this.addressLocality = ko.observable();
   this.addressRegion = ko.observable();
   this.postalCode = ko.observable();
+  this.foundingDate = ko.observable();
   this.address = ko.computed(function() {
    return self.streetAddress() + ", " + self.addressLocality() + ", " 
       + self.addressRegion() + " " + self.postalCode();
@@ -42,6 +44,7 @@ var CompanyReportModel = function() {
       this.addressLocality(data["http://schema.org/PostalAddressaddressLocality"]);
       this.addressRegion(data["http://schema.org/PostalAddressaddressRegion"]);
       this.postalCode(data["http://schema.org/PostalAddresspostalCode"]);
+      this.foundingDate(data["http://schema.org/CorporationfoundingDate"]);
       
       // hardcoded, as the sparql query returns dbpedia for linked nodes too.
       this.dbpedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
@@ -64,8 +67,7 @@ var CompanyReportModel = function() {
   this.renderDbPedia = function(data, uri) {
     if (data.results && data.results.bindings.length > 0) {
       this.description(data.results.bindings[0].abstract.value);
-      //var logo = $("#report-logo");
-      //logo.attr("src", data.results.bindings[0].logo.value);
+      this.logo(data.results.bindings[0].logo.value);
     }
   };
 };

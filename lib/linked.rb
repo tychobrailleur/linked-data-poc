@@ -9,8 +9,8 @@ class DbPedia
   def abstract(subject)
     puts " ### #{subject}"
     query = <<SPARQL
-SELECT * WHERE { <#{subject}> <http://dbpedia.org/ontology/abstract> ?abstract . 
-  <#{subject}> <http://dbpedia.org/property/logo> ?logo . 
+SELECT ?abstract ?logo WHERE { <#{subject}> <http://dbpedia.org/ontology/abstract> ?abstract . 
+  OPTIONAL { <#{subject}> <http://xmlns.com/foaf/0.1/depiction> ?logo . }
   FILTER(langMatches(lang(?abstract), "EN")) }
 SPARQL
     response = RestClient.get(DBPEDIA_SPARQL_ENDPOINT + "?query=#{URI.escape(query)}&output=json")
@@ -22,19 +22,14 @@ class Local
   LOCAL_SPARQL_ENDPOINT = "http://localhost:3030/companies/query"
 
   def match(company)
-    # This is a very convoluted query that probably can be simplified.
     query = <<SPARQL
 PREFIX corp: <http://schema.org/Corporation>
 SELECT DISTINCT ?p ?prop ?t ?sub WHERE {{  
   ?c corp:name ?o .
   FILTER regex(?o, "#{company}", "i") .
-  ?c ?p ?prop }
-UNION {
-  ?c corp:name ?o .
-  FILTER regex(?o, "#{company}", "i") .
   ?c ?p ?prop .
-  ?prop ?t ?sub 
-}}
+  OPTIONAL { ?prop ?t ?sub . } }
+}
 SPARQL
     response = HTTParty.get(LOCAL_SPARQL_ENDPOINT + "?query=#{URI.escape(query)}&output=json")
     json_response = JSON.parse(response.body)
