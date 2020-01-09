@@ -1,0 +1,46 @@
+* SPARQL Server
+
+- Jena Fuseki, populated with Turtle file (=companies.ttl=)
+- Start:
+
+#+begin_src
+./fuseki-server --update --loc=ds /companies
+#+end_src
+
+(You may need to create the =ds= folder first)
+
+- Go to console: http://localhost:3030/sparql.tpl
+- In the /File Upload/ section, upload Turtle file.
+
+* Application Server
+
+- Implemented with [[http://www.sinatrarb.com/][Sinatra]] and [[https://github.com/jnunemaker/httparty][HTTParty]]
+
+- Start:
+
+#+begin_src bash
+  ruby server.rb
+#+end_src
+
+* SPARQL
+
+- http://www.cambridgesemantics.com/semantic-university/sparql-by-example
+
+- Update value:
+
+#+begin_src
+  PREFIX owl: [[http://www.w3.org/2002/07/owl#]] INSERT {
+  [[http://www.weblogism.com/companies/060902413]] owl:sameAs
+  "http://live.dbpedia.org/page/Google" } WHERE {}
+#+end_src
+
+- Delete all graph data:
+
+#+begin_src
+  CLEAR [ GRAPH ]
+#+end_src
+
+* Outstanding Questions
+
+- How to bring back the content of the address which is a blank node? Is
+  a blank node the best way to store an address?
