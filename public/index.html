@@ -12,10 +12,10 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <style>
-            body {
-                padding-top: 60px;
-                padding-bottom: 40px;
-            }
+         body {
+             padding-top: 60px;
+             padding-bottom: 40px;
+         }
         </style>
         <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
         <link rel="stylesheet" href="css/main.css">
@@ -58,8 +58,8 @@
                             </li>
                         </ul>
                         <form class="navbar-form pull-right">
-                          <input class="input-xlarge" id="q" type="text" placeholder="Company Name" data-bind="value: input">
-                          <button type="submit" id="searchBtn" class="btn btn-primary" data-bind="click: getReport">Go</button>
+                            <input class="input-xlarge" id="q" type="text" placeholder="Company Name" data-bind="value: input">
+                            <button type="submit" id="searchBtn" class="btn btn-primary" data-bind="click: getReport">Go</button>
                         </form>
                     </div><!--/.nav-collapse -->
                 </div>
@@ -68,29 +68,29 @@
 
         <div class="container">
             <div id="spinner" class="container" data-bind="visible: !show">
-              <img src="img/ajax-loader.gif" alt="Loading...">
+                <img src="img/ajax-loader.gif" alt="Loading...">
             </div>
             <div id="report" class="container" data-bind="visible: show">
-              <h1 data-bind="text: name"></h1>
-              <p class="report-details"><span data-bind="text: duns"></span> &middot; <addr data-bind="text: address"></addr></p>
-              <div class="row">
-                <div id="report-abstract" class="span8">
-                  <p data-bind="text: description"></p>
+                <h1 data-bind="text: name"></h1>
+                <p class="report-details"><span data-bind="text: duns"></span> &middot; <addr data-bind="text: address"></addr></p>
+                <div class="row">
+                    <div id="report-abstract" class="span8">
+                        <p data-bind="text: description"></p>
+                    </div>
+                    <div class="span4" id="report-info">
+                        <img width="200" id="report-logo" data-bind="attr: { src: logo, alt: name }">
+                        <dl class="dl-horizontal dl-multicolumn">
+                            <dt>Founded</dt>
+                            <dd data-bind="text: foundingDate"></dd>
+                        </dl>
+                    </div>
                 </div>
-                <div class="span4" id="report-info">
-                  <img width="200" id="report-logo" data-bind="attr: { src: logo, alt: name }">
-                  <dl class="dl-horizontal dl-multicolumn">
-                    <dt>Founded</dt>
-                    <dd data-bind="text: foundingDate"></dd>
-                  </dl>
-                </div>
-              </div>
             </div>
 
             <hr>
 
             <footer>
-                <p>&copy; Company 2013</p>
+                <p>&copy; 2013–2020 Company</p>
             </footer>
 
         </div> <!-- /container -->

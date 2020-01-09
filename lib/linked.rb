@@ -9,11 +9,11 @@ class DbPedia
   def abstract(subject)
     puts " ### #{subject}"
     query = <<SPARQL
-SELECT ?abstract ?logo WHERE { <#{subject}> <http://dbpedia.org/ontology/abstract> ?abstract . 
+SELECT ?abstract ?logo WHERE { <#{subject}> <http://dbpedia.org/ontology/abstract> ?abstract .
   OPTIONAL { <#{subject}> <http://xmlns.com/foaf/0.1/depiction> ?logo . }
   FILTER(langMatches(lang(?abstract), "EN")) }
 SPARQL
-    response = RestClient.get(DBPEDIA_SPARQL_ENDPOINT + "?query=#{URI.escape(query)}&output=json")
+    response = RestClient.get(DBPEDIA_SPARQL_ENDPOINT + "?query=#{URI.escape(query)}&format=application%2Fsparql-results%2Bjson&CXML_redir_for_subjs=121&CXML_redir_for_hrefs=&timeout=30000&debug=on")
     response.to_str
   end
 end
@@ -24,7 +24,7 @@ class Local
   def match(company)
     query = <<SPARQL
 PREFIX corp: <http://schema.org/Corporation>
-SELECT DISTINCT ?p ?prop ?t ?sub WHERE {{  
+SELECT DISTINCT ?p ?prop ?t ?sub WHERE {{
   ?c corp:name ?o .
   FILTER regex(?o, "#{company}", "i") .
   ?c ?p ?prop .
@@ -43,12 +43,12 @@ SPARQL
     bindings.each do |b|
       # This mess is caused by the awkward SPARQL query.
       if b["t"] != nil
-        data_hash[b["t"]["value"]] << b["sub"]["value"]        
+        data_hash[b["t"]["value"]] << b["sub"]["value"]
       else
         data_hash[b["p"]["value"]] << b["prop"]["value"]
       end
     end
-    
+
     data_hash.reduce!
     data_hash.to_json
   end

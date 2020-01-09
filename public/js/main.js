@@ -16,7 +16,7 @@ var CompanyReportModel = function() {
   this.postalCode = ko.observable();
   this.foundingDate = ko.observable();
   this.address = ko.computed(function() {
-   return self.streetAddress() + ", " + self.addressLocality() + ", " 
+   return self.streetAddress() + ", " + self.addressLocality() + ", "
       + self.addressRegion() + " " + self.postalCode();
   });
 
@@ -45,11 +45,11 @@ var CompanyReportModel = function() {
       this.addressRegion(data["http://schema.org/PostalAddressaddressRegion"]);
       this.postalCode(data["http://schema.org/PostalAddresspostalCode"]);
       this.foundingDate(data["http://schema.org/CorporationfoundingDate"]);
-      
+
       // hardcoded, as the sparql query returns dbpedia for linked nodes too.
       this.dbpedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
       this.getDbPedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
-      
+
       this.show(true);
     }
   };
@@ -57,7 +57,7 @@ var CompanyReportModel = function() {
   this.getDbPedia = function(entityId) {
     console.log("DbPedia! " + entityId);
     $.getJSON(
-      "/dbpedia/" + encodeURIComponent(entityId),
+      "/dbpedia?q=" + encodeURIComponent(entityId),
       function(data) {
         self.renderDbPedia(data, entityId);
       }
