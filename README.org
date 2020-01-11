@@ -26,13 +26,19 @@ curl -X PUT \
 
 * Application Server
 
-- Implemented with [[http://www.sinatrarb.com/][Sinatra]] and [[https://github.com/jnunemaker/httparty][HTTParty]]
+  The application is a Clojure implemented with ring-jetty.
 
-- Start:
+  To build the application:
 
-#+begin_src bash
-  ruby server.rb
-#+end_src
+  #+begin_src
+lein uberjar
+  #+end_src
+
+  To run it:
+
+  #+begin_src
+java -jar target/linked-data-poc-1.0-SNAPSHOT-standalone.jar
+  #+end_src
 
 * SPARQL
 
