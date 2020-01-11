@@ -40,15 +40,17 @@ var CompanyReportModel = function() {
     if (data) {
       this.name(data["http://schema.org/Corporationname"]);
       this.duns(data["http://schema.org/Corporationduns"]);
-      this.streetAddress(data["http://schema.org/PostalAddressstreetAddress"]);
-      this.addressLocality(data["http://schema.org/PostalAddressaddressLocality"]);
-      this.addressRegion(data["http://schema.org/PostalAddressaddressRegion"]);
-      this.postalCode(data["http://schema.org/PostalAddresspostalCode"]);
+      if (typeof data["http://schema.org/Corporationaddress"] !== "undefined") {
+        this.streetAddress(data["http://schema.org/Corporationaddress"]["http://schema.org/PostalAddressstreetAddress"]);
+        this.addressLocality(data["http://schema.org/Corporationaddress"]["http://schema.org/PostalAddressaddressLocality"]);
+        this.addressRegion(data["http://schema.org/Corporationaddress"]["http://schema.org/PostalAddressaddressRegion"]);
+        this.postalCode(data["http://schema.org/Corporationaddress"]["http://schema.org/PostalAddresspostalCode"]);
+      }
       this.foundingDate(data["http://schema.org/CorporationfoundingDate"]);
 
       // hardcoded, as the sparql query returns dbpedia for linked nodes too.
-      this.dbpedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
-      this.getDbPedia(data["http://www.w3.org/2002/07/owl#sameAs"][1]);
+      this.dbpedia(data["http://www.w3.org/2002/07/owl#sameAs"][0]);
+      this.getDbPedia(data["http://www.w3.org/2002/07/owl#sameAs"][0]);
 
       this.show(true);
     }
@@ -57,17 +59,18 @@ var CompanyReportModel = function() {
   this.getDbPedia = function(entityId) {
     console.log("DbPedia! " + entityId);
     $.getJSON(
-      "/dbpedia?q=" + encodeURIComponent(entityId),
+      "/dbpedia/" + encodeURIComponent(entityId),
       function(data) {
+        console.log(data);
         self.renderDbPedia(data, entityId);
       }
     );
   };
 
   this.renderDbPedia = function(data, uri) {
-    if (data.results && data.results.bindings.length > 0) {
-      this.description(data.results.bindings[0].abstract.value);
-      this.logo(data.results.bindings[0].logo.value);
+    if (data && data.length > 0) {
+      this.description(data[0].abstract.value);
+      this.logo(data[0].logo.value);
     }
   };
 };

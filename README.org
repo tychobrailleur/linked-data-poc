@@ -12,6 +12,18 @@
 - Go to console: http://localhost:3030/sparql.tpl
 - In the /File Upload/ section, upload Turtle file.
 
+** Using curl
+
+   #+begin_src bash
+curl -X PUT \
+     -H Content-Type:text/turtle \
+     -T companies.ttl \
+     -G http://localhost:3030/ds/data \
+     --data-urlencode graph=http://example.com/graph
+   #+end_src
+
+   #+RESULTS:
+
 * Application Server
 
 - Implemented with [[http://www.sinatrarb.com/][Sinatra]] and [[https://github.com/jnunemaker/httparty][HTTParty]]
