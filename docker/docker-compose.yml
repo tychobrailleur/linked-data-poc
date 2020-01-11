@@ -1,0 +1,20 @@
+version: '3.1'
+
+services:
+  jena:
+    image: jena-fuseki
+    hostname: jena
+    ports:
+      - "3030:3030"
+    volumes:
+      - ${PWD}/data:/jena-fuseki/ds
+    entrypoint: /bin/sh
+    command: -c "/jena-fuseki/fuseki-server  --loc=ds /companies"
+
+
+  web:
+    image: linked-data:latest
+    depends_on:
+      - jena
+    ports:
+      - "3000:3000"
